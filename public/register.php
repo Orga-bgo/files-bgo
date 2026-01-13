@@ -69,6 +69,11 @@ $pageTitle = 'Registrieren';
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/header-simple.css">
     <link rel="stylesheet" href="/assets/css/cookie-banner.css">
+    <?php
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (strpos($host, 'files.babixgo.de') !== false): ?>
+    <link rel="stylesheet" href="/assets/css/files-bgo.css">
+    <?php endif; ?>
     
     <!-- Google Analytics Tracking Configuration -->
     <?php include __DIR__ . '/../includes/tracking.php'; ?>

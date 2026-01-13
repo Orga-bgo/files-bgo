@@ -41,6 +41,11 @@ $pageTitle = 'Home';
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/header-simple.css">
     <link rel="stylesheet" href="/assets/css/cookie-banner.css">
+    <?php
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (strpos($host, 'files.babixgo.de') !== false): ?>
+    <link rel="stylesheet" href="/assets/css/files-bgo.css">
+    <?php endif; ?>
     
     <!-- Google Analytics Tracking Configuration -->
     <?php include __DIR__ . '/../includes/tracking.php'; ?>
@@ -57,6 +62,12 @@ $pageTitle = 'Home';
                 <h1>BabixGO <span class="logo-go">Files</span></h1>
                 <p class="hero-description">Download-Portal für die BabixGO Community</p>
             </section>
+
+            <!-- Design Test Card -->
+            <div class="content-card" style="margin-bottom: 2rem;">
+                <h2>Design-Test</h2>
+                <p>Wenn diese Karte wie BabixGO aussieht, ist files-bgo.css korrekt eingebunden.</p>
+            </div>
 
             <!-- Kategorien Grid -->
             <section class="categories-section">
