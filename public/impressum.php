@@ -50,7 +50,7 @@ $pageTitle = 'Impressum';
             <div class="content-card">
                 <h1>Impressum</h1>
                 
-                <p>Für weitere Informationen besuchen Sie bitte das Hauptimressum unter:</p>
+                <p>Für weitere Informationen besuchen Sie bitte das Hauptimpressum unter:</p>
                 <p><a href="https://babixgo.de/impressum/" target="_blank" rel="noopener">https://babixgo.de/impressum/</a></p>
                 
                 <h2>Kontakt</h2>

@@ -46,12 +46,12 @@
     
     <!-- Authentication Links -->
     <?php if (isLoggedIn()): ?>
-    <div style="border-top: 1px solid var(--stroke); margin: 16px 0; padding-top: 16px;">
+    <div class="menu-section-divider">
       <a href="/profile.php">👤 Mein Profil</a>
       <a href="/logout.php">🚪 Abmelden</a>
     </div>
     <?php else: ?>
-    <div style="border-top: 1px solid var(--stroke); margin: 16px 0; padding-top: 16px;">
+    <div class="menu-section-divider">
       <a href="/login.php">🔐 Anmelden</a>
       <a href="/register.php">✨ Registrieren</a>
     </div>
