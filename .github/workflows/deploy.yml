@@ -13,8 +13,6 @@ jobs:
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
-    # Only run if SFTP secrets are configured
-    
     
     steps:
       - name: Checkout Code
