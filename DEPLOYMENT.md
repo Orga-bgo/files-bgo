@@ -19,13 +19,12 @@ Füge folgende Secrets hinzu:
 
 | Secret Name | Beschreibung | Beispiel |
 |-------------|--------------|----------|
-| `SFTP_HOST` | Hostname oder IP-Adresse deines Servers | `files.babixgo.de` oder `192.168.1.100` |
+| `SFTP_SERVER` | Hostname oder IP-Adresse deines Servers | `files.babixgo.de` oder `192.168.1.100` |
 | `SFTP_USERNAME` | Dein SFTP-Benutzername | `webuser` |
 | `SFTP_PASSWORD` | Dein SFTP-Passwort | `dein-sicheres-passwort` |
-| `SFTP_PORT` | SFTP-Port (optional, Standard: 22) | `22` oder `2222` |
-| `SFTP_REMOTE_PATH` | Zielpfad auf dem Server | `/var/www/html/` oder `/home/user/public_html/` |
+| `SFTP_REMOTE_DIR` | Zielpfad auf dem Server | `/var/www/html/` oder `/home/user/public_html/` |
 
-⚠️ **Wichtig**: Achte darauf, dass der `SFTP_REMOTE_PATH` mit einem `/` endet!
+⚠️ **Wichtig**: Achte darauf, dass der `SFTP_REMOTE_DIR` mit einem `/` endet!
 
 ## 🚀 Deployment-Optionen
 
@@ -109,7 +108,7 @@ local-dir: ./dist/       # Beispiel: dist Verzeichnis
 ### Auf dem Server
 
 1. Verbinde dich per SSH/SFTP mit deinem Server
-2. Navigiere zum konfigurierten `SFTP_REMOTE_PATH`
+2. Navigiere zum konfigurierten `SFTP_REMOTE_DIR`
 3. Überprüfe, ob die Dateien aktualisiert wurden
 
 ## ⚠️ Troubleshooting
