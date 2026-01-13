@@ -1,0 +1,371 @@
+/* =======================================
+   BASIS: Design-Token & Layout
+   ======================================= */
+
+:root {
+  /* Farben (aus babixgo.css extrahiert) */
+  --md-primary: rgb(185 226 255);
+  --md-on-primary: rgb(0 41 60);
+  --md-primary-container: rgb(91 151 189);
+  --md-primary-fixed-dim: rgb(146 206 245);
+
+  --md-secondary: rgb(130 180 215);
+  --md-tertiary: rgb(90 140 175);
+
+  --md-background: rgb(16 20 23);
+  --md-on-background: rgb(223 227 231);
+  --md-surface: rgb(65 72 77);
+  --md-on-surface: rgb(255 255 255);
+  --md-surface-variant: rgb(65 72 77);
+  --md-on-surface-variant: rgb(183, 194, 208);
+
+  --md-surface-container-lowest: rgb(4 8 11);
+  --md-surface-container-low: rgb(26 30 34);
+  --md-surface-container: rgb(36 40 44);
+  --md-surface-container-high: rgb(47 51 55);
+  --md-surface-container-highest: rgb(58 62 66);
+
+  --md-outline-variant: rgb(138 145 151);
+  --md-shadow: rgb(0 0 0);
+
+  /* Typografie */
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.2rem;
+  --font-size-body: 1rem;
+
+  /* Spacing / Layout */
+  --zoom-scale: 0.92;
+  --space-section: calc(32px * var(--zoom-scale));
+  --space-card: calc(16px * var(--zoom-scale));
+  --space-element: calc(12px * var(--zoom-scale));
+  --padding-card: calc(20px * var(--zoom-scale));
+  --layout-max-width: calc(800px * var(--zoom-scale));
+
+  --bg: var(--md-background);
+  --card: var(--md-surface-container);
+  --surface-1: var(--md-surface-container-low);
+  --surface-2: var(--md-surface-container-high);
+
+  --primary: var(--md-primary-fixed-dim);
+  --primary-hover: var(--md-primary);
+  --text: var(--md-on-surface);
+  --muted: var(--md-on-surface-variant);
+  --stroke: var(--md-outline-variant);
+  --card-hover: var(--md-surface-container-high);
+
+  --shadow-1: 0 1px 2px var(--md-shadow), 0 1px 3px var(--md-shadow);
+  --shadow-2: 0 3px 6px var(--md-shadow), 0 10px 20px rgba(0, 0, 0, .25);
+}
+
+/* Grundlayout & Typografie */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(100% * var(--zoom-scale));
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1;
+  width: 100%;
+  padding-bottom: calc(40px * var(--zoom-scale));
+}
+
+/* Container wie Hauptseite */
+.container {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 calc(18px * var(--zoom-scale));
+}
+
+/* =======================================
+   HEADINGS (H1–H3) wie babixgo.de
+   ======================================= */
+
+h1 {
+  font-size: var(--font-size-h1);
+  color: var(--md-primary);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 var(--space-element) 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: calc(12px * var(--zoom-scale));
+  font-size: var(--font-size-h2);
+  color: var(--md-secondary);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 var(--space-element) 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 img.icon {
+  width: calc(28px * var(--zoom-scale));
+  height: calc(28px * var(--zoom-scale));
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+h2:hover img.icon {
+  transform: scale(1.08);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  color: var(--md-secondary);
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 var(--space-element) 0;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  padding-bottom: 0.4rem;
+}
+
+h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, currentColor, transparent);
+}
+
+p {
+  font-size: var(--font-size-body);
+  color: var(--text);
+  margin: 0 0 var(--space-element) 0;
+}
+
+/* =======================================
+   NAV / QUICK-NAV (leichtgewichtige Variante)
+   ======================================= */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--surface-1);
+  transition: all .2s;
+}
+
+.nav a:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* =======================================
+   CARDS / BLÖCKE für Downloads & Kategorien
+   ======================================= */
+
+.block,
+.content-card,
+.download-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: var(--padding-card);
+  margin-bottom: var(--space-card);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--stroke);
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.block::before,
+.download-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.block:hover,
+.download-card:hover {
+  background: var(--card-hover);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.block:hover::before,
+.download-card:hover::before {
+  opacity: 1;
+}
+
+.download-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space-element) * 1.5);
+  margin: var(--space-element) 0;
+  padding-top: var(--space-element);
+  border-top: 1px solid var(--stroke);
+}
+
+.download-meta span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Grid für Listen (Downloads / Kategorien) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-card);
+  margin-top: var(--space-section);
+}
+
+/* =======================================
+   BUTTONS
+   ======================================= */
+
+.btn,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid var(--primary);
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--md-on-primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(146, 206, 245, .4);
+}
+
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--stroke);
+}
+
+.btn-ghost:hover {
+  background: var(--card-hover);
+  border-color: var(--primary);
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* =======================================
+   SIMPLE HEADER / FOOTER für files.babixgo.de
+   ======================================= */
+
+.site-header {
+  border-bottom: 1px solid var(--stroke);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: calc(16px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.logo-files {
+  color: var(--muted);
+}
+
+.logo-go {
+  color: var(--primary);
+}
+
+.site-footer {
+  border-top: 1px solid var(--stroke);
+  background: var(--bg);
+  padding: calc(16px * var(--zoom-scale)) 0;
+  margin-top: calc(24px * var(--zoom-scale));
+}
+
+.site-footer p {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* =======================================
+   RESPONSIVE TWEAKS
+   ======================================= */
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-h1: 1.75rem;
+    --font-size-h2: 1.35rem;
+    --font-size-h3: 1.1rem;
+  }
+
+  .header-logo {
+    font-size: 20px;
+  }
+}
