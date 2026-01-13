@@ -48,7 +48,15 @@ Du kannst das Deployment auch manuell auslösen:
 
 Der Workflow deployed den gesamten Inhalt des `public/` Verzeichnisses auf deinen Server.
 
-⚠️ **Hinweis**: Der SFTP-Workflow synchronisiert alle Dateien. Stelle sicher, dass sensible Dateien wie `.env` nicht im `public/` Verzeichnis liegen.
+### Automatisch ausgeschlossene Dateien
+
+Folgende Dateien/Verzeichnisse werden **nicht** deployed:
+
+- `.env` Dateien (Umgebungsvariablen und Secrets)
+- `.git*` Dateien und Verzeichnisse (Git-Metadaten)
+- `node_modules/` (Node.js Abhängigkeiten, falls vorhanden)
+
+⚠️ **Wichtig**: Stelle sicher, dass keine weiteren sensiblen Dateien (z.B. Konfigurationsdateien mit Passwörtern, private Schlüssel, Datenbank-Dumps) im `public/` Verzeichnis liegen.
 
 ## 🔧 Workflow anpassen
 
@@ -73,6 +81,14 @@ Um nur einen bestimmten Unterordner zu deployen, ändere `local_path`:
 local_path: ./public/*     # Standardwert
 # oder
 local_path: ./dist/*       # Beispiel: dist Verzeichnis
+```
+
+### Weitere Dateien ausschließen
+
+Um zusätzliche Dateien oder Verzeichnisse vom Deployment auszuschließen, erweitere `rsyncArgs`:
+
+```yaml
+rsyncArgs: '--exclude=.env --exclude=.git* --exclude=node_modules --exclude=tests --exclude=*.log'
 ```
 
 ## 🔍 Deployment überprüfen

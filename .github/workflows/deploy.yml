@@ -28,3 +28,4 @@ jobs:
           local_path: ./public/*
           remote_path: ${{ secrets.SFTP_REMOTE_DIR }}
           sftp_only: true
+          rsyncArgs: '--exclude=.env --exclude=.git* --exclude=node_modules'
