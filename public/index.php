@@ -75,9 +75,7 @@ $pageTitle = 'Home';
 
             <!-- Kategorien Grid -->
             <section class="categories-section">
-                <h2>
-                    📁 Kategorien
-                </h2>
+                <h2>Kategorien</h2>
                 
                 <?php if (isset($_GET['success'])): ?>
                     <div class="alert alert-success" data-dismiss="5000">
