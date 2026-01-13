@@ -109,7 +109,7 @@ files-bgo/
 
 ### Manuelles Deployment
 
-1. Lade den Inhalt des `public` Verzeichnisses per FTP/SFTP hoch
+1. Lade den Inhalt des `public` Verzeichnisses per SFTP hoch
 2. Stelle sicher, dass alle Dateien die richtigen Berechtigungen haben
 3. Konfiguriere die `.env` Datei auf dem Server
 
