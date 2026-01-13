@@ -7,36 +7,38 @@
    CSS Variables - Design Tokens
    ============================================ */
 :root {
-  /* Primary Colors - etwas heller */
-  --md-primary: rgb(195 231 255);
+  /* Primary Colors (from babixgo.de) */
+  --md-primary: rgb(185 226 255);
   --md-on-primary: rgb(0 41 60);
-  --md-primary-container: rgb(105 165 200);
-  --md-primary-fixed-dim: rgb(160 216 250);
+  --md-primary-container: rgb(91 151 189);
+  --md-primary-fixed-dim: rgb(146 206 245);
   
-  /* Secondary Colors - etwas heller */
-  --md-secondary: rgb(145 190 220);
+  /* Secondary Colors */
+  --md-secondary: rgb(130 180 215);
   --md-on-secondary: rgb(22 40 51);
   --md-secondary-container: rgb(140 157 170);
   
-  /* Tertiary Colors - etwas heller */
-  --md-tertiary: rgb(100 150 185);
+  /* Tertiary Colors */
+  --md-tertiary: rgb(90 140 175);
   --md-tertiary-container: rgb(85 149 185);
   
-  /* Surface & Background - etwas heller */
-  --md-background: rgb(20 24 28);
-  --md-surface: rgb(70 77 82);
-  --md-surface-container: rgb(42 46 50);
-  --md-surface-container-low: rgb(30 34 38);
-  --md-surface-container-high: rgb(52 56 60);
-  --md-surface-container-highest: rgb(63 67 71);
+  /* Surface & Background (from babixgo.de) */
+  --md-background: rgb(16 20 23);
+  --md-on-background: rgb(223 227 231);
+  --md-surface: rgb(65 72 77);
+  --md-surface-container: rgb(36 40 44);
+  --md-surface-container-lowest: rgb(4 8 11);
+  --md-surface-container-low: rgb(26 30 34);
+  --md-surface-container-high: rgb(47 51 55);
+  --md-surface-container-highest: rgb(58 62 66);
   
   /* Text */
   --md-on-surface: rgb(255 255 255);
-  --md-on-surface-variant: rgb(190 200 210);
+  --md-on-surface-variant: rgb(183 194 208);
   
   /* Outline */
   --md-outline: rgb(180 187 193);
-  --md-outline-variant: rgb(148 155 161);
+  --md-outline-variant: rgb(138 145 151);
   
   /* Error */
   --md-error: rgb(255 180 171);
@@ -607,11 +609,25 @@ p {
 .content-card,
 .download-card {
   background: var(--card);
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   padding: var(--padding-card);
   border: 1px solid var(--stroke);
-  transition: all var(--transition-normal);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-1);
+  position: relative;
+  overflow: hidden;
+}
+
+.download-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--md-tertiary));
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .download-card:hover {
@@ -619,6 +635,10 @@ p {
   transform: translateY(-2px);
   box-shadow: var(--shadow-2);
   border-color: var(--primary);
+}
+
+.download-card:hover::before {
+  opacity: 1;
 }
 
 .download-card + .download-card,
@@ -741,16 +761,18 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: var(--font-size-body);
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
-  transition: all var(--transition-normal);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  border: none;
+  border: 1px solid var(--primary);
   line-height: 1.2;
+  font-family: 'Inter', sans-serif;
 }
 
 .btn:hover {
@@ -761,13 +783,14 @@ p {
 .btn-download {
   background: var(--primary);
   color: var(--md-on-primary);
+  border-color: var(--primary);
 }
 
 .btn-primary:hover,
 .btn-download:hover {
   background: var(--md-primary);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-2);
+  box-shadow: 0 4px 12px rgba(146, 206, 245, 0.4);
   color: var(--md-on-primary);
 }
 
@@ -786,6 +809,7 @@ p {
 .btn-danger {
   background: var(--md-error);
   color: var(--md-on-error);
+  border: 1px solid var(--md-error);
 }
 
 .btn-danger:hover {
