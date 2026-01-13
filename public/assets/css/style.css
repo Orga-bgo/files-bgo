@@ -790,6 +790,7 @@ p {
 .btn-download:hover {
   background: var(--md-primary);
   transform: translateY(-2px);
+  /* Using explicit RGB values as CSS doesn't support rgba(var(--rgb-variable), opacity) */
   box-shadow: 0 4px 12px rgba(146, 206, 245, 0.4);
   color: var(--md-on-primary);
 }
