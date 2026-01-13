@@ -22,6 +22,7 @@ function getDB(): mysqli {
             $errorMsg .= '<li>DB_HOST' . (empty(DB_HOST) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
             $errorMsg .= '<li>DB_NAME' . (empty(DB_NAME) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
             $errorMsg .= '<li>DB_USER' . (empty(DB_USER) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
+            // Note: We show "DB_PASSWORD" (env var name) but check DB_PASS (constant name)
             $errorMsg .= '<li>DB_PASSWORD' . (empty(DB_PASS) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
             $errorMsg .= '</ul>';
             $errorMsg .= '<p>Create a <code>.env</code> file in the web root or set environment variables on your server.</p>';
