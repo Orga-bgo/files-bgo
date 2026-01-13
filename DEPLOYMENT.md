@@ -17,6 +17,8 @@ Um das automatische Deployment zu nutzen, musst du folgende Secrets in deinem Gi
 
 Füge folgende Secrets hinzu:
 
+#### SFTP-Verbindung
+
 | Secret Name | Beschreibung | Beispiel |
 |-------------|--------------|----------|
 | `SFTP_SERVER` | Hostname oder IP-Adresse deines Servers | `files.babixgo.de` oder `192.168.1.100` |
@@ -25,6 +27,32 @@ Füge folgende Secrets hinzu:
 | `SFTP_REMOTE_DIR` | Zielpfad auf dem Server | `/var/www/html/` oder `/home/user/public_html/` |
 
 ⚠️ **Wichtig**: Achte darauf, dass der `SFTP_REMOTE_DIR` mit einem `/` endet!
+
+#### Datenbank-Konfiguration (erforderlich)
+
+| Secret Name | Beschreibung | Beispiel |
+|-------------|--------------|----------|
+| `DB_HOST` | Datenbank-Hostname | `localhost` oder `mysql.example.com` |
+| `DB_NAME` | Name der Datenbank | `babixgo_files` |
+| `DB_USER` | Datenbank-Benutzername | `dbuser` |
+| `DB_PASSWORD` | Datenbank-Passwort | `dein-db-passwort` |
+
+#### SMTP-Konfiguration (optional)
+
+| Secret Name | Beschreibung | Beispiel |
+|-------------|--------------|----------|
+| `SMTP_HOST` | SMTP-Server-Hostname | `smtp-relay.brevo.com` |
+| `SMTP_PORT` | SMTP-Port | `587` |
+| `SMTP_USER` | SMTP-Benutzername | `deine@email.de` |
+| `SMTP_KEY` | SMTP-Passwort/API-Key | `dein-smtp-key` |
+
+#### Site-Konfiguration (optional)
+
+| Secret Name | Beschreibung | Beispiel |
+|-------------|--------------|----------|
+| `SITE_URL` | URL der Website | `https://files.babixgo.de` |
+
+⚠️ **Wichtig**: Die Datenbank-Secrets (DB_*) sind erforderlich, damit die Anwendung funktioniert!
 
 ## 🚀 Deployment-Optionen
 
@@ -48,13 +76,22 @@ Du kannst das Deployment auch manuell auslösen:
 
 Der Workflow deployed den gesamten Inhalt des `public/` Verzeichnisses auf deinen Server.
 
+### Automatische .env Datei Erstellung
+
+Der Deployment-Workflow erstellt **automatisch** eine `.env` Datei aus den konfigurierten GitHub Secrets. Dies bedeutet:
+
+- ✅ Die `.env` Datei wird bei jedem Deployment mit den aktuellen Secret-Werten erstellt
+- ✅ Datenbank-Credentials und andere sensible Daten werden sicher aus GitHub Secrets geladen
+- ✅ Die Anwendung erhält automatisch die benötigten Umgebungsvariablen
+
 ### Automatisch ausgeschlossene Dateien
 
 Folgende Dateien/Verzeichnisse werden **nicht** deployed:
 
-- `.env` Dateien (Umgebungsvariablen und Secrets)
 - `.git*` Dateien und Verzeichnisse (Git-Metadaten)
 - `node_modules/` (Node.js Abhängigkeiten, falls vorhanden)
+
+⚠️ **Wichtig**: Die `.env` Datei aus deinem Repository wird NICHT deployed - stattdessen wird sie aus GitHub Secrets generiert.
 
 ⚠️ **Wichtig**: Stelle sicher, dass keine weiteren sensiblen Dateien (z.B. Konfigurationsdateien mit Passwörtern, private Schlüssel, Datenbank-Dumps) im `public/` Verzeichnis liegen.
 
@@ -88,8 +125,10 @@ local_path: ./dist/*       # Beispiel: dist Verzeichnis
 Um zusätzliche Dateien oder Verzeichnisse vom Deployment auszuschließen, erweitere `rsyncArgs`:
 
 ```yaml
-rsyncArgs: '--exclude=.env --exclude=.git* --exclude=node_modules --exclude=tests --exclude=*.log'
+rsyncArgs: '--exclude=.git* --exclude=node_modules --exclude=tests --exclude=*.log'
 ```
+
+⚠️ **Hinweis**: Die `.env` Datei wird nicht mehr ausgeschlossen, da sie vom Workflow aus GitHub Secrets generiert wird.
 
 ## 🔍 Deployment überprüfen
 

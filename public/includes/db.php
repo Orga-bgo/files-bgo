@@ -13,13 +13,32 @@ function getDB(): mysqli {
     static $db = null;
     
     if ($db === null) {
+        // Check if database credentials are configured
+        if (empty(DB_HOST) || empty(DB_NAME) || empty(DB_USER)) {
+            $errorMsg = '<h1>Configuration Error</h1>';
+            $errorMsg .= '<p>Database credentials are not configured.</p>';
+            $errorMsg .= '<p>Please ensure the following environment variables are set:</p>';
+            $errorMsg .= '<ul>';
+            $errorMsg .= '<li>DB_HOST' . (empty(DB_HOST) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
+            $errorMsg .= '<li>DB_NAME' . (empty(DB_NAME) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
+            $errorMsg .= '<li>DB_USER' . (empty(DB_USER) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
+            $errorMsg .= '<li>DB_PASSWORD' . (empty(DB_PASS) ? ' <strong>(missing)</strong>' : ' ✓') . '</li>';
+            $errorMsg .= '</ul>';
+            $errorMsg .= '<p>Create a <code>.env</code> file in the web root or set environment variables on your server.</p>';
+            $errorMsg .= '<p>See <code>.env.example</code> for reference.</p>';
+            die($errorMsg);
+        }
+        
         $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         
         if ($db->connect_error) {
             if (DEBUG_MODE) {
                 die('Database connection failed: ' . $db->connect_error);
             } else {
-                die('Database connection failed. Please try again later.');
+                $errorMsg = '<h1>Database Connection Error</h1>';
+                $errorMsg .= '<p>Unable to connect to the database. Please contact the site administrator.</p>';
+                $errorMsg .= '<p>Error code: ' . $db->connect_errno . '</p>';
+                die($errorMsg);
             }
         }
         
