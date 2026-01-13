@@ -72,9 +72,9 @@ BabixGO Files is a PHP-based file download portal for the BabixGO community. The
 ### Error Handling
 
 - Use `DEBUG_MODE` constant to control error verbosity
-- Log errors appropriately (not yet implemented - consider adding)
 - Show user-friendly error messages in production
 - Never expose sensitive information in error messages
+- Handle errors gracefully with try-catch blocks where appropriate
 
 ## Testing and Validation
 

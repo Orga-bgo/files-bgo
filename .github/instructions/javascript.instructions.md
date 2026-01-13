@@ -53,10 +53,14 @@ Example:
 ```javascript
 async function submitForm(formData) {
     try {
+        // Get CSRF token from meta tag or form
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+        
         const response = await fetch('/api/endpoint.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
             },
             body: JSON.stringify(formData)
         });
