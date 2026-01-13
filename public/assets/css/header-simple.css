@@ -36,6 +36,14 @@
   text-decoration: none;
 }
 
+.logo-files {
+  color: var(--muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
 .logo-babix {
   color: var(--muted);
   font-family: 'Montserrat', sans-serif;
@@ -159,6 +167,13 @@
 .menu-dropdown {
   position: relative;
   margin: 4px 0;
+}
+
+/* Menu section divider */
+.menu-section-divider {
+  border-top: 1px solid var(--stroke);
+  margin: 16px 0;
+  padding-top: 16px;
 }
 
 .menu-dropdown-toggle {

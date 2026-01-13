@@ -8,7 +8,7 @@
 <header class="site-header">
   <div class="header-brand">
     <a href="/" class="header-logo">
-      <span class="logo-babix">babix</span><span class="logo-go">GO</span>
+      <span class="logo-files">files.</span><span class="logo-babix">babix</span><span class="logo-go">GO</span>
     </a>
     <div class="header-tagline">Downloadportal</div>
   </div>
@@ -23,7 +23,8 @@
 <!-- ========== MOBILE MENU ========== -->
 <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-inner">
-    <a href="https://babixgo.de/">Home</a>
+    <a href="https://babixgo.de/">BabixGO Home</a>
+    <a href="/">Downloadportal</a>
     <div class="menu-dropdown">
       <button class="menu-dropdown-toggle" aria-expanded="false" type="button">
         Angebote
@@ -41,7 +42,19 @@
       </div>
     </div>
     <a href="https://babixgo.de/anleitungen/">Anleitungen</a>
-    <a href="/">Downloads</a>
     <a href="https://babixgo.de/kontakt/">Kontakt</a>
+    
+    <!-- Authentication Links -->
+    <?php if (isLoggedIn()): ?>
+    <div class="menu-section-divider">
+      <a href="/profile.php">👤 Mein Profil</a>
+      <a href="/logout.php">🚪 Abmelden</a>
+    </div>
+    <?php else: ?>
+    <div class="menu-section-divider">
+      <a href="/login.php">🔐 Anmelden</a>
+      <a href="/register.php">✨ Registrieren</a>
+    </div>
+    <?php endif; ?>
   </div>
 </nav>
