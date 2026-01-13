@@ -92,14 +92,6 @@ $pageTitle = 'Home';
                 <div class="categories-grid">
                     <?php foreach($categories as $category): ?>
                     <div class="category-card">
-                        <div class="category-icon">
-                            <?php if($category['icon']): ?>
-                                <img src="<?= e($category['icon']) ?>" alt="">
-                            <?php else: ?>
-                                📁
-                            <?php endif; ?>
-                        </div>
-                        
                         <h3><?= e($category['name']) ?></h3>
                         
                         <p class="category-description">

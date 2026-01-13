@@ -36,6 +36,14 @@
   text-decoration: none;
 }
 
+.logo-files {
+  color: var(--muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
 .logo-babix {
   color: var(--muted);
   font-family: 'Montserrat', sans-serif;
