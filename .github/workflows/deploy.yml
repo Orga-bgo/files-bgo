@@ -1,0 +1,37 @@
+name: Deploy via SFTP
+
+on:
+  # Automatisches Deployment bei Push auf main Branch
+  push:
+    branches:
+      - main
+  
+  # Manuelles Deployment über GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT || 22 }}
+          protocol: sftp
+          local-dir: ./public/
+          server-dir: ${{ secrets.SFTP_REMOTE_PATH }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.env
+            **/vendor/**
