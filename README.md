@@ -117,7 +117,7 @@ files-bgo/
 
 Das Repository enthält einen GitHub Actions Workflow für automatisches Deployment via SFTP.
 
-#### Einrichtung:
+#### Schnellstart:
 
 1. Gehe zu deinem Repository → Settings → Secrets and variables → Actions
 2. Füge folgende Secrets hinzu:
@@ -126,11 +126,13 @@ Das Repository enthält einen GitHub Actions Workflow für automatisches Deploym
    - `SFTP_USERNAME`: Dein SFTP-Benutzername
    - `SFTP_PASSWORD`: Dein SFTP-Passwort
    - `SFTP_PORT`: SFTP-Port (Standard: `22`)
-   - `SFTP_REMOTE_PATH`: Zielpfad auf dem Server (z.B. `/var/www/html`)
+   - `SFTP_REMOTE_PATH`: Zielpfad auf dem Server (z.B. `/var/www/html/`)
 
 3. Bei jedem Push auf den `main` Branch wird die Anwendung automatisch deployed
 
 Alternativ kannst du das Deployment auch manuell über die Actions-Seite auslösen.
+
+📖 **Detaillierte Anleitung**: Siehe [DEPLOYMENT.md](DEPLOYMENT.md) für eine ausführliche Setup-Anleitung und Troubleshooting.
 
 ## 👥 Benutzerverwaltung
 
