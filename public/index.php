@@ -42,6 +42,9 @@ $pageTitle = 'Home';
     <link rel="stylesheet" href="/assets/css/header-simple.css">
     <link rel="stylesheet" href="/assets/css/cookie-banner.css">
     <?php
+    // Load files-bgo.css only on files.babixgo.de domain
+    // Note: This logic is duplicated across all pages to maintain minimal changes.
+    // Future improvement: Extract to a shared helper function in functions.php
     $host = $_SERVER['HTTP_HOST'] ?? '';
     if (strpos($host, 'files.babixgo.de') !== false): ?>
     <link rel="stylesheet" href="/assets/css/files-bgo.css">
@@ -63,7 +66,8 @@ $pageTitle = 'Home';
                 <p class="hero-description">Download-Portal für die BabixGO Community</p>
             </section>
 
-            <!-- Design Test Card - TODO: Remove after verification that files-bgo.css is working -->
+            <!-- Design Test Card - Added per task requirements to verify files-bgo.css integration -->
+            <!-- TODO: This can be removed after deployment verification on files.babixgo.de -->
             <div class="content-card" style="margin-bottom: 2rem;">
                 <h2>Design-Test</h2>
                 <p>Wenn diese Karte wie BabixGO aussieht, ist files-bgo.css korrekt eingebunden.</p>
