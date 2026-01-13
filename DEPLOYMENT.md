@@ -48,14 +48,15 @@ Du kannst das Deployment auch manuell auslösen:
 
 Der Workflow deployed den gesamten Inhalt des `public/` Verzeichnisses auf deinen Server.
 
-### Ausgeschlossene Dateien
+### Automatisch ausgeschlossene Dateien
 
 Folgende Dateien/Verzeichnisse werden **nicht** deployed:
 
-- `.git` und `.github` Verzeichnisse
-- `node_modules/` (falls vorhanden)
-- `.env` Dateien (aus Sicherheitsgründen)
-- `vendor/` Verzeichnis (falls vorhanden)
+- `.env` Dateien (Umgebungsvariablen und Secrets)
+- `.git*` Dateien und Verzeichnisse (Git-Metadaten)
+- `node_modules/` (Node.js Abhängigkeiten, falls vorhanden)
+
+⚠️ **Wichtig**: Stelle sicher, dass keine weiteren sensiblen Dateien (z.B. Konfigurationsdateien mit Passwörtern, private Schlüssel, Datenbank-Dumps) im `public/` Verzeichnis liegen.
 
 ## 🔧 Workflow anpassen
 
@@ -72,29 +73,22 @@ on:
       - main  # Ändere dies zu deinem gewünschten Branch
 ```
 
-### Weitere Dateien ausschließen
-
-Füge weitere Ausschlüsse unter `exclude:` hinzu:
-
-```yaml
-exclude: |
-  **/.git*
-  **/.git*/**
-  **/node_modules/**
-  **/.env
-  **/vendor/**
-  **/tests/**           # Beispiel: Tests ausschließen
-  **/README.md          # Beispiel: README ausschließen
-```
-
 ### Deployment-Verzeichnis ändern
 
-Um nur einen bestimmten Unterordner zu deployen, ändere `local-dir`:
+Um nur einen bestimmten Unterordner zu deployen, ändere `local_path`:
 
 ```yaml
-local-dir: ./public/     # Standardwert
+local_path: ./public/*     # Standardwert
 # oder
-local-dir: ./dist/       # Beispiel: dist Verzeichnis
+local_path: ./dist/*       # Beispiel: dist Verzeichnis
+```
+
+### Weitere Dateien ausschließen
+
+Um zusätzliche Dateien oder Verzeichnisse vom Deployment auszuschließen, erweitere `rsyncArgs`:
+
+```yaml
+rsyncArgs: '--exclude=.env --exclude=.git* --exclude=node_modules --exclude=tests --exclude=*.log'
 ```
 
 ## 🔍 Deployment überprüfen
@@ -132,9 +126,9 @@ local-dir: ./dist/       # Beispiel: dist Verzeichnis
 
 ### Dateien werden nicht aktualisiert
 
-- Stelle sicher, dass `dangerous-clean-slate: false` gesetzt ist
-- Überprüfe die `exclude:` Liste
-- Prüfe die Logs in GitHub Actions für Details
+- Überprüfe die Logs in GitHub Actions für Details
+- Stelle sicher, dass der Zielpfad korrekt ist
+- Prüfe die Dateiberechtigungen auf dem Server
 
 ## 🔒 Sicherheitshinweise
 
@@ -147,7 +141,7 @@ local-dir: ./dist/       # Beispiel: dist Verzeichnis
 ## 📚 Weitere Ressourcen
 
 - [GitHub Actions Dokumentation](https://docs.github.com/en/actions)
-- [FTP-Deploy-Action Dokumentation](https://github.com/SamKirkland/FTP-Deploy-Action)
+- [SFTP-Deploy-Action Dokumentation](https://github.com/wlixcc/SFTP-Deploy-Action)
 - [GitHub Secrets verwalten](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
 ## 💡 Tipps
