@@ -17,7 +17,7 @@
   --md-surface: rgb(65 72 77);
   --md-on-surface: rgb(255 255 255);
   --md-surface-variant: rgb(65 72 77);
-  --md-on-surface-variant: rgb(183, 194, 208);
+  --md-on-surface-variant: rgb(183 194 208);
 
   --md-surface-container-lowest: rgb(4 8 11);
   --md-surface-container-low: rgb(26 30 34);
@@ -49,6 +49,7 @@
 
   --primary: var(--md-primary-fixed-dim);
   --primary-hover: var(--md-primary);
+  --accent: var(--md-tertiary);
   --text: var(--md-on-surface);
   --muted: var(--md-on-surface-variant);
   --stroke: var(--md-outline-variant);

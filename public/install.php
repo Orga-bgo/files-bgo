@@ -116,6 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['install'])) {
     <meta name="robots" content="noindex, nofollow">
     <title>Kategorien-Installation - BabixGO Files</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <?php
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (strpos($host, 'files.babixgo.de') !== false): ?>
+    <link rel="stylesheet" href="/assets/css/files-bgo.css">
+    <?php endif; ?>
 </head>
 <body>
     <main class="main-content auth-container">
