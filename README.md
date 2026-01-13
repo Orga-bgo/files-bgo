@@ -122,11 +122,10 @@ Das Repository enthält einen GitHub Actions Workflow für automatisches Deploym
 1. Gehe zu deinem Repository → Settings → Secrets and variables → Actions
 2. Füge folgende Secrets hinzu:
 
-   - `SFTP_HOST`: Dein Server-Hostname (z.B. `files.babixgo.de`)
+   - `SFTP_SERVER`: Dein Server-Hostname (z.B. `files.babixgo.de`)
    - `SFTP_USERNAME`: Dein SFTP-Benutzername
    - `SFTP_PASSWORD`: Dein SFTP-Passwort
-   - `SFTP_PORT`: SFTP-Port (Standard: `22`)
-   - `SFTP_REMOTE_PATH`: Zielpfad auf dem Server (z.B. `/var/www/html/`)
+   - `SFTP_REMOTE_DIR`: Zielpfad auf dem Server (z.B. `/var/www/html/`)
 
 3. Bei jedem Push auf den `main` Branch wird die Anwendung automatisch deployed
 
