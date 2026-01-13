@@ -49,6 +49,7 @@
 
   --primary: var(--md-primary-fixed-dim);
   --primary-hover: var(--md-primary);
+  --accent: var(--md-tertiary);
   --text: var(--md-on-surface);
   --muted: var(--md-on-surface-variant);
   --stroke: var(--md-outline-variant);

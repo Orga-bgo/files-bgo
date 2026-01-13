@@ -63,7 +63,7 @@ $pageTitle = 'Home';
                 <p class="hero-description">Download-Portal für die BabixGO Community</p>
             </section>
 
-            <!-- Design Test Card -->
+            <!-- Design Test Card - TODO: Remove after verification that files-bgo.css is working -->
             <div class="content-card" style="margin-bottom: 2rem;">
                 <h2>Design-Test</h2>
                 <p>Wenn diese Karte wie BabixGO aussieht, ist files-bgo.css korrekt eingebunden.</p>
