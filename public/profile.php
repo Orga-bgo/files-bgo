@@ -65,10 +65,10 @@ $pageTitle = 'Mein Profil';
     <?php endif; ?>
     
     <!-- Google Analytics Tracking Configuration -->
-    <?php include __DIR__ . '/includes/tracking.php'; ?>
+    <?php include INCLUDES_PATH . 'tracking.php'; ?>
 </head>
 <body>
-    <?php include __DIR__ . "/includes/header.php"; ?>
+    <?php include INCLUDES_PATH . "header.php"; ?>
     <!-- Header -->
 
     <!-- Main Content -->
@@ -146,7 +146,7 @@ $pageTitle = 'Mein Profil';
     </footer>
 
     <!-- Cookie Consent Banner -->
-    <?php include __DIR__ . '/includes/cookie-banner.php'; ?>
+    <?php include INCLUDES_PATH . 'cookie-banner.php'; ?>
 
     <!-- Scripts -->
     <script src="/assets/js/header.js"></script>
