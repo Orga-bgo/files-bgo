@@ -46,6 +46,25 @@
       </div>
     </div>
     
+    <!-- ADMIN MENU (only for logged-in admins) -->
+    <?php if (isLoggedIn() && isAdmin()): ?>
+    <div class="menu-dropdown">
+      <button class="menu-dropdown-toggle" aria-expanded="false" type="button">
+        Admin Menü
+        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="menu-dropdown-content">
+        <a href="/admin/dashboard.php">Dashboard</a>
+        <a href="/admin/upload.php">Upload</a>
+        <a href="/admin/manage-downloads.php">Downloads verwalten</a>
+        <a href="/admin/manage-users.php">Benutzer verwalten</a>
+        <a href="/admin/moderate-comments.php">Kommentare moderieren</a>
+      </div>
+    </div>
+    <?php endif; ?>
+    
     <!-- AUTH SECTION -->
     <div class="menu-auth">
       <?php if (!isLoggedIn()): ?>
