@@ -218,9 +218,9 @@ function deleteComment(int $commentId, ?int $userId = null): bool {
  */
 function createDownload(array $data) {
     return insertRow(
-        "INSERT INTO downloads (name, description, file_size, file_type, download_link, alternative_link, created_by) 
-         VALUES (?, ?, ?, ?, ?, ?, ?)",
-        'ssssssi',
+        "INSERT INTO downloads (name, description, file_size, file_type, download_link, alternative_link, category_id, created_by) 
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        'ssssssii',
         [
             $data['name'],
             $data['description'] ?? '',
@@ -228,6 +228,7 @@ function createDownload(array $data) {
             $data['file_type'] ?? '',
             $data['download_link'] ?? '',
             $data['alternative_link'] ?? '',
+            $data['category_id'] ?? null,
             $data['created_by'] ?? null
         ]
     );
@@ -242,8 +243,8 @@ function createDownload(array $data) {
 function updateDownload(int $id, array $data): bool {
     executeQuery(
         "UPDATE downloads SET name = ?, description = ?, file_size = ?, file_type = ?, 
-         download_link = ?, alternative_link = ? WHERE id = ?",
-        'ssssssi',
+         download_link = ?, alternative_link = ?, category_id = ? WHERE id = ?",
+        'ssssssii',
         [
             $data['name'],
             $data['description'] ?? '',
@@ -251,6 +252,7 @@ function updateDownload(int $id, array $data): bool {
             $data['file_type'] ?? '',
             $data['download_link'] ?? '',
             $data['alternative_link'] ?? '',
+            $data['category_id'] ?? null,
             $id
         ]
     );
