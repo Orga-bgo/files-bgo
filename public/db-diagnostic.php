@@ -145,6 +145,17 @@ require_once __DIR__ . '/init.php';
             $tableKey = 'Tables_in_' . DB_NAME;
             foreach ($tables as $i => $table) {
                 $tableName = $table[$tableKey];
+                
+                // Validate table name (only alphanumeric, underscore, and hyphen allowed)
+                if (!preg_match('/^[a-zA-Z0-9_-]+$/', $tableName)) {
+                    echo '<tr>';
+                    echo '<td>' . ($i + 1) . '</td>';
+                    echo '<td><strong>' . e($tableName) . '</strong></td>';
+                    echo '<td><span class="badge badge-error">Invalid table name</span></td>';
+                    echo '</tr>';
+                    continue;
+                }
+                
                 $countResult = fetchOne("SELECT COUNT(*) as count FROM `{$tableName}`");
                 $rowCount = $countResult['count'] ?? 0;
                 
