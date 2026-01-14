@@ -1,7 +1,7 @@
 <?php
 /**
- * Site Header with Navigation
- * New header design with clean structure
+ * New Site Header with Navigation
+ * Matches the requested design with clean HTML structure
  */
 ?>
 

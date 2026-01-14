@@ -1,0 +1,302 @@
+/* HEADER-SPEZIFISCHE STYLES FÜR FILES.BABIXGO */
+:root {
+  --md-background: rgb(16 20 23);
+  --md-on-background: rgb(223 227 231);
+  --md-surface-container-low: rgb(26 30 34);
+  --md-surface-container: rgb(36 40 44);
+  --md-surface-container-high: rgb(47 51 55);
+  --md-surface-container-lowest: rgb(4 8 11);
+  --md-primary-fixed-dim: rgb(146 206 245);
+  --md-on-primary: rgb(0 41 60);
+  --md-primary: rgb(185 226 255);
+  --md-outline-variant: rgb(138 145 151);
+  
+  --bg: var(--md-background);
+  --card: var(--md-surface-container);
+  --surface-1: var(--md-surface-container-low);
+  --surface-2: var(--md-surface-container-high);
+  --primary: var(--md-primary-fixed-dim);
+  --on-primary: var(--md-on-primary);
+  --primary-hover: var(--md-primary);
+  --text: var(--md-on-background);
+  --muted: var(--md-outline-variant);
+  --stroke: var(--md-outline-variant);
+  
+  --zoom-scale: 0.92;
+  --header-height: calc(90px * var(--zoom-scale));
+  --space-element: calc(12px * var(--zoom-scale));
+  --padding-section: calc(28px * var(--zoom-scale));
+}
+
+/* HEADER STYLES */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(20px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+  border-bottom: 1px solid var(--stroke);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1001;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+  height: var(--header-height);
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-decoration: none;
+  display: block;
+  color: var(--text);
+}
+
+.header-tagline {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: .8;
+  line-height: 1.3;
+}
+
+.logo-files {
+  font-size: 0.85em;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.logo-babix {
+  color: var(--muted);
+}
+
+.logo-go {
+  color: var(--primary);
+}
+
+/* MENU TOGGLE BUTTON */
+.menu-toggle {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--surface-1);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  transition: all .3s;
+  padding: 0;
+}
+
+.menu-toggle:hover {
+  background: var(--card);
+}
+
+.menu-toggle:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all .3s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: sticky;
+  top: var(--header-height);
+  background: var(--bg);
+  border-bottom: 1px solid var(--stroke);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+  z-index: 1000;
+}
+
+.mobile-menu.active {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.mobile-menu-inner {
+  padding: calc(20px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+}
+
+.mobile-menu a {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  margin: 4px 0;
+  border-radius: 8px;
+  background: var(--surface-1);
+  transition: all .2s;
+}
+
+.mobile-menu a:hover {
+  background: var(--card);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.mobile-menu a:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* DROPDOWN MENU */
+.menu-dropdown {
+  position: relative;
+  margin: 4px 0;
+}
+
+.menu-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--text);
+  background: var(--surface-1);
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+
+.menu-dropdown-toggle:hover {
+  background: var(--card);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.menu-dropdown-toggle:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.dropdown-arrow {
+  transition: transform .2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.menu-dropdown.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.menu-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+  padding-left: 16px;
+}
+
+.menu-dropdown.active .menu-dropdown-content {
+  max-height: 400px;
+}
+
+.menu-dropdown-content a {
+  font-size: 15px;
+  background: var(--md-surface-container-lowest);
+  border-left: 2px solid var(--primary);
+  margin: 2px 0;
+  padding: 10px 16px;
+}
+
+.menu-dropdown-content a:hover {
+  background: var(--surface-1);
+  border-left-color: var(--primary-hover);
+}
+
+/* AUTH BUTTONS */
+.menu-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--stroke);
+}
+
+.auth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all .3s;
+  border: 2px solid transparent;
+}
+
+.auth-button--login {
+  background: var(--surface-1);
+  color: var(--text);
+  border-color: var(--stroke);
+}
+
+.auth-button--login:hover {
+  background: var(--surface-2);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.auth-button--register {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+
+.auth-button--register:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(146, 206, 245, .4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  :root {
+    --header-height: calc(82px * var(--zoom-scale));
+  }
+  
+  .header-logo {
+    font-size: 20px;
+  }
+
+  .header-tagline {
+    font-size: 10px;
+  }
+}
