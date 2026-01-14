@@ -81,10 +81,10 @@ $pageTitle = 'User verwalten';
     <?php endif; ?>
     
     <!-- Google Analytics Tracking Configuration -->
-    <?php include __DIR__ . '/../../includes/tracking.php'; ?>
+    <?php include __DIR__ . '/../includes/tracking.php'; ?>
 </head>
 <body>
-    <?php include __DIR__ . "/../../includes/header.php"; ?>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
     <!-- Header -->
 
     <!-- Main Content -->
@@ -178,7 +178,7 @@ $pageTitle = 'User verwalten';
     </footer>
 
     <!-- Cookie Consent Banner -->
-    <?php include __DIR__ . '/../../includes/cookie-banner.php'; ?>
+    <?php include __DIR__ . '/../includes/cookie-banner.php'; ?>
 
     <!-- Scripts -->
     <script src="/assets/js/header.js"></script>
