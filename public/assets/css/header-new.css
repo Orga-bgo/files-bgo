@@ -242,7 +242,7 @@
 /* AUTH BUTTONS */
 .menu-auth {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   margin-top: 20px;
   padding-top: 20px;
@@ -260,6 +260,7 @@
   font-size: 16px;
   transition: all .3s;
   border: 2px solid transparent;
+  flex: 1;
 }
 
 .auth-button--login {
