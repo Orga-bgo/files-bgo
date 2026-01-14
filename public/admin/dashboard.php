@@ -28,7 +28,7 @@ $pageTitle = 'Admin Dashboard';
     
     <!-- Styles -->
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/header-simple.css">
+    <link rel="stylesheet" href="/assets/css/header-new.css">
     <link rel="stylesheet" href="/assets/css/cookie-banner.css">
     <?php
     $host = $_SERVER['HTTP_HOST'] ?? '';
@@ -110,7 +110,7 @@ $pageTitle = 'Admin Dashboard';
     <?php include INCLUDES_PATH . 'cookie-banner.php'; ?>
 
     <!-- Scripts -->
-    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/header-new.js"></script>
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/cookie-consent.js"></script>
 </body>
