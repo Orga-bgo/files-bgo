@@ -35,7 +35,7 @@
   --font-size-body: 1rem;
 
   /* Spacing / Layout */
-  --zoom-scale: 0.92;
+  --zoom-scale: 1;
   --space-section: calc(32px * var(--zoom-scale));
   --space-card: calc(16px * var(--zoom-scale));
   --space-element: calc(12px * var(--zoom-scale));
