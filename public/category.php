@@ -8,14 +8,20 @@ require_once __DIR__ . '/init.php';
 
 initSession();
 
-// Slug aus URL extrahieren
-$requestUri = $_SERVER['REQUEST_URI'];
-$uriParts = explode('/', trim($requestUri, '/'));
-$slug = end($uriParts);
+// Get slug from query parameter (set by .htaccess rewrite rule)
+// Fallback to extracting from URI if not present
+$slug = $_GET['slug'] ?? null;
 
-// Remove query string if present
-if (strpos($slug, '?') !== false) {
-    $slug = substr($slug, 0, strpos($slug, '?'));
+if (!$slug) {
+    // Fallback: Extract slug from URL
+    $requestUri = $_SERVER['REQUEST_URI'];
+    $uriParts = explode('/', trim($requestUri, '/'));
+    $slug = end($uriParts);
+    
+    // Remove query string if present
+    if (strpos($slug, '?') !== false) {
+        $slug = substr($slug, 0, strpos($slug, '?'));
+    }
 }
 
 if(empty($slug) || $slug === 'kategorie') {
@@ -66,10 +72,10 @@ $pageTitle = $category['name'];
     <?php endif; ?>
     
     <!-- Google Analytics Tracking Configuration -->
-    <?php include __DIR__ . '/../includes/tracking.php'; ?>
+    <?php include INCLUDES_PATH . 'tracking.php'; ?>
 </head>
 <body>
-    <?php include __DIR__ . '/../includes/header.php'; ?>
+    <?php include INCLUDES_PATH . 'header.php'; ?>
     
     <main class="main-content">
         <div class="container">
@@ -181,7 +187,7 @@ $pageTitle = $category['name'];
     </footer>
 
     <!-- Cookie Consent Banner -->
-    <?php include __DIR__ . '/../includes/cookie-banner.php'; ?>
+    <?php include INCLUDES_PATH . 'cookie-banner.php'; ?>
 
     <!-- Scripts -->
     <script src="/assets/js/header.js"></script>
