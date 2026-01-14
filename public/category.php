@@ -8,14 +8,20 @@ require_once __DIR__ . '/init.php';
 
 initSession();
 
-// Slug aus URL extrahieren
-$requestUri = $_SERVER['REQUEST_URI'];
-$uriParts = explode('/', trim($requestUri, '/'));
-$slug = end($uriParts);
+// Get slug from query parameter (set by .htaccess rewrite rule)
+// Fallback to extracting from URI if not present
+$slug = $_GET['slug'] ?? null;
 
-// Remove query string if present
-if (strpos($slug, '?') !== false) {
-    $slug = substr($slug, 0, strpos($slug, '?'));
+if (!$slug) {
+    // Fallback: Extract slug from URL
+    $requestUri = $_SERVER['REQUEST_URI'];
+    $uriParts = explode('/', trim($requestUri, '/'));
+    $slug = end($uriParts);
+    
+    // Remove query string if present
+    if (strpos($slug, '?') !== false) {
+        $slug = substr($slug, 0, strpos($slug, '?'));
+    }
 }
 
 if(empty($slug) || $slug === 'kategorie') {
