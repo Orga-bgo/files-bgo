@@ -11,6 +11,9 @@ requireAdmin();
 $error = '';
 $success = $_GET['success'] ?? '';
 
+// Load categories for dropdown
+$categories = getCategories();
+
 // Handle delete action
 if (isset($_POST['action']) && $_POST['action'] === 'delete') {
     $csrfToken = $_POST['csrf_token'] ?? '';
@@ -45,6 +48,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
         $fileType = trim($_POST['file_type'] ?? '');
         $downloadLink = trim($_POST['download_link'] ?? '');
         $alternativeLink = trim($_POST['alternative_link'] ?? '');
+        $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_VALIDATE_INT) ?: null;
         
         if (empty($name) || empty($downloadLink)) {
             $error = 'Name und Download-Link sind erforderlich.';
@@ -55,7 +59,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
                 'file_size' => $fileSize,
                 'file_type' => $fileType,
                 'download_link' => $downloadLink,
-                'alternative_link' => $alternativeLink
+                'alternative_link' => $alternativeLink,
+                'category_id' => $categoryId
             ]);
             
             if ($updated) {
@@ -162,7 +167,8 @@ $pageTitle = 'Downloads verwalten';
                                                     'file_type' => $download['file_type'],
                                                     'file_size' => $download['file_size'],
                                                     'download_link' => $download['download_link'],
-                                                    'alternative_link' => $download['alternative_link'] ?? ''
+                                                    'alternative_link' => $download['alternative_link'] ?? '',
+                                                    'category_id' => $download['category_id'] ?? ''
                                                 ]), ENT_QUOTES, 'UTF-8'); ?>'
                                                 onclick="openEditModalFromData(this)"
                                             >
@@ -209,6 +215,18 @@ $pageTitle = 'Downloads verwalten';
                     <div class="form-group">
                         <label for="edit_description" class="form-label">Beschreibung</label>
                         <textarea id="edit_description" name="description" class="form-textarea" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_category_id" class="form-label">Kategorie</label>
+                        <select id="edit_category_id" name="category_id" class="form-select">
+                            <option value="">-- Keine Kategorie --</option>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo e($category['id']); ?>">
+                                    <?php echo e($category['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     
                     <div class="form-group">
@@ -260,6 +278,7 @@ $pageTitle = 'Downloads verwalten';
             document.getElementById('edit_download_id').value = data.id;
             document.getElementById('edit_name').value = data.name;
             document.getElementById('edit_description').value = data.description;
+            document.getElementById('edit_category_id').value = data.category_id || '';
             document.getElementById('edit_file_type').value = data.file_type;
             document.getElementById('edit_file_size').value = data.file_size;
             document.getElementById('edit_download_link').value = data.download_link;

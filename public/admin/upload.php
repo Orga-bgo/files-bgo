@@ -11,6 +11,9 @@ requireAdmin();
 $error = '';
 $success = '';
 
+// Load categories for dropdown
+$categories = getCategories();
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csrfToken = $_POST['csrf_token'] ?? '';
@@ -24,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileType = trim($_POST['file_type'] ?? '');
         $downloadLink = trim($_POST['download_link'] ?? '');
         $alternativeLink = trim($_POST['alternative_link'] ?? '');
+        $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_VALIDATE_INT) ?: null;
         
         // Validation
         if (empty($name)) {
@@ -42,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'file_type' => $fileType,
                 'download_link' => $downloadLink,
                 'alternative_link' => $alternativeLink,
+                'category_id' => $categoryId,
                 'created_by' => getCurrentUserId()
             ]);
             
@@ -124,6 +129,18 @@ $pageTitle = 'Neuer Download';
                             placeholder="Beschreibe den Download..."
                             rows="4"
                         ><?php echo e($_POST['description'] ?? ''); ?></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category_id" class="form-label">Kategorie</label>
+                        <select id="category_id" name="category_id" class="form-select">
+                            <option value="">-- Keine Kategorie --</option>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo e($category['id']); ?>" <?php echo ($_POST['category_id'] ?? '') == $category['id'] ? 'selected' : ''; ?>>
+                                    <?php echo e($category['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     
                     <div class="form-group">
