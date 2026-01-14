@@ -244,7 +244,7 @@ function updateDownload(int $id, array $data): bool {
     executeQuery(
         "UPDATE downloads SET name = ?, description = ?, file_size = ?, file_type = ?, 
          download_link = ?, alternative_link = ?, category_id = ? WHERE id = ?",
-        'sssssiii',
+        'ssssssii',
         [
             $data['name'],
             $data['description'] ?? '',
